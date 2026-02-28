@@ -1,0 +1,234 @@
+﻿@{
+    ViewData["Title"] = "Center Current Situation";
+}
+
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" />
+
+<style>
+    body {
+        background-color: #e9edf2;
+        font-family: 'Segoe UI', sans-serif;
+    }
+
+    .report-wrapper {
+        background: #ffffff;
+        padding: 25px;
+    }
+
+    .main-title {
+        font-size: 26px;
+        font-weight: 700;
+    }
+
+    .sub-title {
+        font-size: 20px;
+        font-weight: 600;
+        color: #1f5fbf;
+    }
+
+    table.report-table {
+        width: 100%;
+        border-collapse: collapse;
+        text-align: center;
+    }
+
+    .report-table th,
+    .report-table td {
+        border: 2px solid #ffffff;
+        padding: 15px 10px;
+        font-size: 16px;
+    }
+
+    /* Header */
+    .header-blue {
+        background-color: #4f73b8;
+        color: white;
+        font-weight: 700;
+        font-size: 18px;
+    }
+
+    .header-green {
+        background-color: #5b8734;
+        color: white;
+        font-weight: 700;
+        font-size: 18px;
+    }
+
+    /* Body cells */
+    .body-cell {
+        background-color: #bfc5d2;
+        font-weight: 500;
+    }
+
+    .left-category {
+        background-color: #b3bac9;
+        font-weight: 700;
+        font-size: 18px;
+        writing-mode: vertical-rl;
+        transform: rotate(180deg);
+    }
+
+    .metric-title {
+        font-weight: 700;
+        font-size: 18px;
+    }
+
+    .green-total {
+        background-color: #5b8734;
+        color: white;
+        font-weight: 700;
+        font-size: 18px;
+    }
+
+    .bottom-total {
+        background-color: #5b8734;
+        color: white;
+        font-weight: 700;
+        font-size: 20px;
+    }
+
+    .filter-section {
+        margin-bottom: 20px;
+    }
+</style>
+
+<div class="container mt-4 report-wrapper">
+
+    <div class="main-title">
+        3. 전도 Evangelism
+    </div>
+
+    <div class="sub-title mb-3">
+        1) 센터 현황 Center Current Situation
+    </div>
+
+    <!-- FILTER -->
+    <div class="row filter-section">
+        <div class="col-md-3">
+            <input type="date" id="fromDate" class="form-control" />
+        </div>
+        <div class="col-md-3">
+            <input type="date" id="toDate" class="form-control" />
+        </div>
+        <div class="col-md-2">
+            <button class="btn btn-primary w-100" onclick="loadReport()">Filter</button>
+        </div>
+    </div>
+
+    <table class="report-table">
+        <thead>
+            <tr>
+                <th class="header-blue" colspan="2"></th>
+                <th class="header-blue">초등 Introductory</th>
+                <th class="header-blue">중등 Intermediate</th>
+                <th class="header-blue">고등 Advanced</th>
+                <th class="header-green">계 Total</th>
+            </tr>
+        </thead>
+        <tbody id="reportBody">
+        </tbody>
+    </table>
+
+</div>
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+<script>
+    $(document).ready(function () {
+        loadReport();
+    });
+
+    function loadReport() {
+
+        $.get('/Report/GetCenterReport', {
+            fromDate: $("#fromDate").val(),
+            toDate: $("#toDate").val()
+        }, function (data) {
+
+            let intro = data.filter(x => x.level === "Introductory");
+            let inter = data.filter(x => x.level === "Intermediate");
+            let adv = data.filter(x => x.level === "Advanced");
+
+            let html = "";
+
+            html += buildRow("수강생 수<br/>No. of students", intro, inter, adv, "regCount", false);
+            html += buildRow("출석율<br/>Participation Ration", intro, inter, adv, "participationCount", true, "participationRate");
+            html += buildRow("전도율<br/>Evangelism Ration", intro, inter, adv, "evangelismCount", true, "evangelismRate");
+            html += buildRow("헌금율<br/>Offering Ration", intro, inter, adv, "offeringCount", true, "offeringRate");
+
+            html += buildCMRow();
+
+            html += buildBottomTotal(intro, inter, adv);
+
+            $("#reportBody").html(html);
+        });
+    }
+
+    function buildRow(title, intro, inter, adv, field, showRate, rateField) {
+
+        let html = "<tr>";
+
+        if (title.includes("No. of students")) {
+            html += "<td class='left-category' rowspan='4'>일반반<br/>General<br/>Class</td>";
+        }
+
+        html += "<td class='body-cell metric-title'>" + title + "</td>";
+
+        html += buildColumn(intro, field, showRate, rateField);
+        html += buildColumn(inter, field, showRate, rateField);
+        html += buildColumn(adv, field, showRate, rateField);
+
+        let total = 0;
+        [...intro, ...inter, ...adv].forEach(x => total += (x[field] || 0));
+
+        html += "<td class='green-total'>" + total + "</td>";
+
+        html += "</tr>";
+        return html;
+    }
+
+    function buildColumn(list, field, showRate, rateField) {
+
+        if (list.length === 0)
+            return "<td class='body-cell'>-</td>";
+
+        let content = "<td class='body-cell' style='text-align:left'>";
+
+        list.forEach(x => {
+            content += "- " + x.className + " : " + (x[field] || 0);
+
+            if (showRate)
+                content += " (" + (x[rateField] || 0) + "%)";
+
+            content += "<br/>";
+        });
+
+        content += "</td>";
+        return content;
+    }
+
+    function buildCMRow() {
+        return `
+            <tr>
+                <td colspan="2" class="body-cell metric-title">교인개강반 CM Class</td>
+                <td class="body-cell"></td>
+                <td class="body-cell"></td>
+                <td class="body-cell">41 (1 Class)</td>
+                <td class="green-total">41 (1 Class)</td>
+            </tr>
+        `;
+    }
+
+    function buildBottomTotal(intro, inter, adv) {
+
+        return `
+            <tr>
+                <td colspan="2" class="bottom-total">계 Total</td>
+                <td class="bottom-total">00(0 Classes)</td>
+                <td class="bottom-total">00(0 Classes)</td>
+                <td class="bottom-total">00(0 Classes)</td>
+                <td class="bottom-total">00(0 Classes)</td>
+            </tr>
+        `;
+    }
+</script>

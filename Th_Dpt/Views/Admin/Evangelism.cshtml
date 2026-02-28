@@ -1,0 +1,91 @@
+﻿
+@{
+    ViewData["Title"] = "Class";
+}
+
+
+<div class="container-fluid mt-4">
+
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <h2 class="fw-bold text-success">
+            <i class="bi bi-people-fill"></i> Evangelism
+        </h2>
+        <div class="d-flex justify-content-end mb-3">
+            <button class="btn btn-success" data-bs-toggle="modal" data-bs-target="#addModal">
+                <i class="bi bi-plus-circle"></i> Add
+            </button>
+        </div>
+    </div>
+    <div class="card shadow-lg border-0">
+        <div class="card-body table-responsive">
+            <table class="table table-bordered table-hover text-center" id="evangelismTable">
+                <thead class="table-success">
+                    <tr>
+                        <th>Id</th>
+                        <th>Class Name</th>
+                        <th>Instructor</th>
+                        <th>Center Student Name</th>
+                        <th>Prospect Name</th>
+                        <th>Phone Number</th>
+                        <th>City</th>
+                    </tr>
+                </thead>
+                <tbody>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+</div>
+
+<div class="modal fade" id="addModal" tabindex="-1">
+    <div class="modal-dialog">
+        <div class="modal-content">
+
+            <div class="modal-header bg-success text-white">
+                <h5 class="modal-title">Add Evangelism</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+            </div>
+
+            <div class="modal-body">
+                <form id="addForm">
+
+                    <div class="mb-2">
+                        @* <input type="text" name="ClassName" class="form-control" placeholder="Class Name" required /> *@
+                        <select id="ClassName" name="ClassName" class="form-control" required>
+                            <option value="">-- Select Class --</option>
+                        </select>
+                    </div>
+
+                    <div class="mb-2">
+                        <input type="text" name="Instructor" id="Instructor" class="form-control" placeholder="Instructor" required readonly />
+                    </div>
+
+                    <div class="mb-2">
+                        <input type="text" name="CenterStudentName" class="form-control" placeholder="Center Student Name" required />
+                    </div>
+
+                    <div class="mb-2">
+                        <input type="text" name="ProspectName" class="form-control" placeholder="Prospect Name" required />
+                    </div>
+
+                    <div class="mb-2">
+                        <input type="text" name="PhoneNumber" class="form-control" placeholder="Phone Number" required />
+                    </div>
+
+                    <div class="mb-2">
+                        <input type="text" name="City" class="form-control" placeholder="City" required />
+                    </div>
+
+                    <div class="text-end">
+                        <button type="submit" class="btn btn-success">Save</button>
+                    </div>
+
+                </form>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+<script src="~/js/thdptjs/evangelism.js"></script>

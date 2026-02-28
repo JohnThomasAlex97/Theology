@@ -1,0 +1,83 @@
+﻿@{
+    ViewData["Title"] = "Class Report";
+}
+
+
+<div class="container-fluid mt-4">
+
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <h2 class="fw-bold text-success">
+            <i class="bi bi-people-fill"></i> Class Report
+        </h2>
+        <div class="d-flex justify-content-end mb-3">
+            <button class="btn btn-success" data-bs-toggle="modal" data-bs-target="#addModal">
+                <i class="bi bi-plus-circle"></i> Add
+            </button>
+        </div>
+    </div>
+    <div class="card shadow-lg border-0">
+        <div class="card-body table-responsive">
+            <table class="table table-bordered table-hover text-center" id="classReportTable">
+                <thead class="table-success">
+                    <tr>
+                        <th>Id</th>
+                        <th>Class Name</th>
+                        <th>Instructor</th>
+                        <th>Attendance Count</th>
+                        <th>No BB</th>
+                        <th>Special Notes</th>
+                    </tr>
+                </thead>
+                <tbody>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+</div>
+
+<div class="modal fade" id="addModal" tabindex="-1">
+    <div class="modal-dialog">
+        <div class="modal-content">
+
+            <div class="modal-header bg-success text-white">
+                <h5 class="modal-title">Add Evangelism</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+            </div>
+
+            <div class="modal-body">
+                <form id="addForm">
+                    <div class="mb-2">
+                        <select id="ClassName" name="ClassName" class="form-control" required>
+                            <option value="">-- Select Class --</option>
+                        </select>
+                    </div>
+
+                    <div class="mb-2">
+                        <input type="text" name="Instructor" id="Instructor" class="form-control" placeholder="Instructor" required readonly />
+                    </div>
+
+                    <div class="mb-2">
+                        <input type="text" name="AttendanceCount" class="form-control" placeholder="Attendance Count" required />
+                    </div>
+
+                    <div class="mb-2">
+                        <input type="text" name="NoBB" class="form-control" placeholder="Number of BB" required />
+                    </div>
+
+                    <div class="mb-2">
+                        <textarea name="SpecialNotes" class="form-control" placeholder="Special Notes"></textarea>
+                    </div>
+
+                    <div class="text-end">
+                        <button type="submit" class="btn btn-success">Save</button>
+                    </div>
+
+                </form>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+<script src="~/js/thdptjs/classreport.js"></script>

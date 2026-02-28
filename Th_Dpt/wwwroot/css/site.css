@@ -1,0 +1,61 @@
+/* GLOBAL */
+body {
+    font-family: 'Inter', sans-serif;
+    margin: 0;
+}
+
+.app-bg {
+    background: linear-gradient(135deg, #1e293b, #0f172a);
+    min-height: 100vh;
+    padding-top: 90px;
+}
+
+/* NAVBAR */
+.modern-navbar {
+    backdrop-filter: blur(12px);
+    background: rgba(15, 23, 42, 0.75);
+    box-shadow: 0 8px 30px rgba(0,0,0,0.2);
+    height: 70px;
+}
+
+/* MAIN CONTAINER */
+.main-container {
+    padding: 40px 60px;
+}
+
+/* CARD STYLE */
+.content-card {
+    background: #ffffff;
+    border-radius: 18px;
+    box-shadow: 0 20px 40px rgba(0,0,0,0.08);
+    min-height: 70vh;
+    transition: 0.3s ease;
+}
+
+    .content-card:hover {
+        transform: translateY(-3px);
+    }
+
+/* BUTTONS */
+.btn-primary {
+    background: #4f46e5;
+    border: none;
+    border-radius: 10px;
+    padding: 10px 18px;
+    font-weight: 500;
+}
+
+    .btn-primary:hover {
+        background: #4338ca;
+    }
+
+/* FORM */
+.form-control {
+    border-radius: 10px;
+    padding: 10px 12px;
+}
+
+    .form-control:focus {
+        box-shadow: 0 0 0 3px rgba(79, 70, 229, 0.2);
+        border-color: #4f46e5;
+    }

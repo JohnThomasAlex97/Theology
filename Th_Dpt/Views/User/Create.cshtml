@@ -1,0 +1,179 @@
+﻿@model List<Th_Dpt.Models.MasterUser>
+
+@{
+    ViewData["Title"] = "User Management";
+}
+
+<div class="container-fluid mt-4">
+
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <h2 class="fw-bold text-success">
+            <i class="bi bi-people-fill"></i> Workers
+        </h2>
+
+        <button class="btn btn-success rounded-circle shadow"
+                data-bs-toggle="modal"
+                data-bs-target="#addUserModal"
+                style="width:50px;height:50px;">
+            <i class="bi bi-plus-lg fs-4"></i>
+        </button>
+    </div>
+
+    <div class="card shadow-lg border-0">
+        <div class="card-body table-responsive">
+            <table class="table table-bordered table-hover text-center">
+                <thead class="table-success">
+                    <tr>
+                        <th>Id</th>
+                        <th>Role</th>
+                        <th>Class Name</th>
+                        <th>User Name</th>
+                        <th>First</th>
+                        <th>Middle</th>
+                        <th>Last</th>
+                        <th>Age</th>
+                        <th>Gender</th>
+                        <th>Phone</th>
+                        <th>District</th>
+                        <th>Work</th>
+                        <th>TTT ID</th>
+                        <th>DOB</th>
+                        <th>Address</th>
+                        <th>Created</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var user in Model)
+                    {
+                        <tr>
+                            <td>@user.Id</td>
+                            <td>@user.RoleName</td>
+                            <td>@user.ClassName</td>
+                            <td>@user.UserName</td>
+                            <td>@user.FirstName</td>
+                            <td>@user.MiddleName</td>
+                            <td>@user.LastName</td>
+                            <td>@user.Age</td>
+                            <td>@user.Gender</td>
+                            <td>@user.PhoneNumber</td>
+                            <td>@user.District</td>
+                            <td>@user.Work</td>
+                            <td>@user.TTTID</td>
+                            <td>@user.DateOfBirth.ToShortDateString()</td>
+                            <td>@user.Address</td>
+                            <td>@user.CreatedDate.ToShortDateString()</td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+</div>
+@section Modals {
+
+    <div class="modal fade" id="addUserModal" tabindex="-1">
+        <div class="modal-dialog modal-lg modal-dialog-centered">
+            <div class="modal-content">
+
+                <div class="modal-header bg-success text-white">
+                    <h5 class="modal-title">Add New Worker</h5>
+                    <button type="button" class="btn-close btn-close-white"
+                            data-bs-dismiss="modal"></button>
+                </div>
+
+                <form asp-action="Create" method="post">
+                    <div class="modal-body">
+                        <div class="row g-3">
+
+                            <div class="col-md-3">
+                                <select name="ClassName" class="form-select">
+                                    <option value="">-- Select Class Name --</option>
+                                    <option>Trichy 163[Christina]</option>
+                                    <option>Chennai 162[Yowan]</option>
+                                    <option>Chennai 163[Aravind]</option>
+                                    <option>Chennai 164[Thomas]</option>
+                                </select>
+                            </div>
+                            <div class="col-md-4">
+                                <input name="UserName" class="form-control" placeholder="User Name" required />
+                            </div>
+                            <div class="col-md-4">
+                                <input name="FirstName" class="form-control" placeholder="First Name" required />
+                            </div>
+
+                            <div class="col-md-4">
+                                <input name="MiddleName" class="form-control" placeholder="Middle Name" />
+                            </div>
+
+                            <div class="col-md-4">
+                                <input name="LastName" class="form-control" placeholder="Last Name" required />
+                            </div>
+
+                            <div class="col-md-3">
+                                <input name="Age" type="number" class="form-control" placeholder="Age" />
+                            </div>
+
+                            <div class="col-md-3">
+                                <select name="Gender" class="form-select">
+                                    <option>Male</option>
+                                    <option>Female</option>
+                                    <option>Other</option>
+                                </select>
+                            </div>
+
+                            <div class="col-md-3">
+                                <input name="PhoneNumber" class="form-control" placeholder="Phone" />
+                            </div>
+
+                            <div class="col-md-3">
+                                <input name="TTTID" class="form-control" placeholder="TTT ID" />
+                            </div>
+
+                            <div class="col-md-4">
+                                <input name="District" class="form-control" placeholder="District" />
+                            </div>
+
+                            <div class="col-md-4">
+                                <input name="Work" class="form-control" placeholder="Work" />
+                            </div>
+
+                            <div class="col-md-4">
+                                <input name="DateOfBirth" type="date" class="form-control" />
+                            </div>
+
+                            <div class="col-md-6">
+                                <textarea name="Address" class="form-control" placeholder="Address"></textarea>
+                            </div>
+
+                            <div class="col-md-6">
+                                <input name="PasswordHash" type="password" class="form-control" placeholder="Password" required />
+                            </div>
+                            <div class="col-md-4">
+                                <label class="form-label">Role</label>
+                                <select name="RoleName" class="form-select">
+                                    <option value="">-- Select Role --</option>
+                                    <option>Instructor</option>
+                                    <option>Evangelist</option>
+                                    <option>Asst.Evangelist</option>
+                                    <option>Staff</option>
+                                </select>
+                            </div>
+
+                        </div>
+                    </div>
+
+                    <div class="modal-footer">
+                        <button type="submit" class="btn btn-success">Save</button>
+                        <button type="button" class="btn btn-secondary"
+                                data-bs-dismiss="modal">
+                            Cancel
+                        </button>
+                    </div>
+                </form>
+
+            </div>
+        </div>
+    </div>
+
+}

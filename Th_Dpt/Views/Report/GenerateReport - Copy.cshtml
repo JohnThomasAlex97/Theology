@@ -1,0 +1,287 @@
+﻿
+    <style>
+        :root {
+            --primary-blue: #2c5282;
+            --primary-green: #2f855a;
+            --light-blue-bg: #ebf8ff;
+            --light-green-bg: #f0fff4;
+            --border-color: #cbd5e0;
+            --text-dark: #2d3748;
+            --text-light: #718096;
+        }
+
+        body {
+            font-family: 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            background-color: #f7fafc;
+            color: var(--text-dark);
+            margin: 0;
+            padding: 40px;
+        }
+
+        /* Container Card */
+        .report-card {
+            background-color: white;
+            max-width: 1200px;
+            margin: 0 auto;
+            border-radius: 12px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1), 0 1px 3px rgba(0, 0, 0, 0.08);
+            overflow: hidden;
+            padding: 30px;
+        }
+
+        /* Header Section */
+        .header {
+            display: flex;
+            align-items: center;
+            border-bottom: 4px solid var(--primary-green);
+            padding-bottom: 20px;
+            margin-bottom: 25px;
+        }
+
+        .logo-placeholder {
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, var(--primary-green), var(--primary-blue));
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: bold;
+            font-size: 24px;
+            margin-right: 20px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+        }
+
+        .title-group h1 {
+            margin: 0;
+            font-size: 32px;
+            color: var(--primary-blue);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .sub-headers {
+            margin-top: 15px;
+        }
+
+            .sub-headers h2 {
+                font-size: 18px;
+                margin: 5px 0;
+                color: #4a5568;
+            }
+
+        .korean {
+            color: var(--primary-blue);
+            font-weight: 700;
+            margin-right: 5px;
+        }
+
+        /* Table Styling */
+        .table-container {
+            overflow-x: auto;
+            border-radius: 8px;
+            border: 1px solid var(--border-color);
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 14px;
+            min-width: 800px; /* Ensures table doesn't squish too much */
+        }
+
+        /* Table Headers */
+        thead th {
+            padding: 15px;
+            text-align: center;
+            color: white;
+            text-transform: uppercase;
+            font-size: 13px;
+            letter-spacing: 0.5px;
+            border-right: 1px solid rgba(255,255,255,0.2);
+        }
+
+        .th-blue {
+            background-color: var(--primary-blue);
+        }
+
+        .th-green {
+            background-color: var(--primary-green);
+        }
+
+        /* Table Body */
+        td {
+            padding: 12px 15px;
+            border: 1px solid var(--border-color); /* The requested border */
+            vertical-align: middle;
+        }
+
+        /* Row Logic */
+        tbody tr:hover {
+            background-color: #fafafa;
+        }
+
+        /* First Column (Row Headers) */
+        .row-header {
+            background-color: var(--light-blue-bg);
+            font-weight: bold;
+            color: var(--primary-blue);
+            text-align: center;
+            width: 120px;
+        }
+
+        /* Data Lists */
+        ul.data-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+            ul.data-list li {
+                margin-bottom: 4px;
+                white-space: nowrap;
+            }
+
+        /* Highlight Columns */
+        .total-column {
+            background-color: var(--light-green-bg);
+            color: var(--primary-green);
+            font-weight: bold;
+            text-align: center;
+            font-size: 15px;
+            border-left: 2px solid var(--primary-green);
+        }
+
+        .center-align {
+            text-align: center;
+        }
+
+        /* Footer Row */
+        .footer-row td {
+            background-color: var(--primary-green);
+            color: white;
+            font-weight: bold;
+            text-align: center;
+            padding: 15px;
+            text-transform: uppercase;
+        }
+
+       
+    </style>
+
+    <div class="report-card">
+        <div class="header">
+            <div class="logo-placeholder">TR</div>
+            <div class="title-group">
+                <h1>Tamil Region</h1>
+            </div>
+        </div>
+
+        <div class="sub-headers">
+            <h2>3. <span class="korean">전도</span> Evangelism</h2>
+            <h2 style="color: var(--text-light); font-size: 16px;">1) <span class="korean">센터 현황</span> Center Current Situation</h2>
+        </div>
+
+        <br>
+
+        <div class="table-container">
+            <table>
+                <thead>
+                    <tr>
+                        <th colspan="2" class="th-blue">Category</th>
+                        <th class="th-blue"><span class="korean">초등</span> Introductory</th>
+                        <th class="th-blue"><span class="korean">중등</span> Intermediate</th>
+                        <th class="th-blue"><span class="korean">고등</span> Advanced</th>
+                        <th class="th-green"><span class="korean">계</span> Total</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td rowspan="4" class="row-header">
+                            <span class="korean">일반반</span><br>General Class
+                        </td>
+                        <td class="row-header" style="background-color: #f7fafc; color: #4a5568;">
+                            <span class="korean">수강생 수</span><br>Students
+                        </td>
+                        <td>
+                            <ul class="data-list">
+                                <li><strong>Chennai 163:</strong> 235</li>
+                                <li><strong>Trichy 163:</strong> 171</li>
+                                <li><strong>Chennai 164:</strong> 670</li>
+                            </ul>
+                        </td>
+                        <td class="center-align">-</td>
+                        <td class="center-align"><strong>Chennai 162:</strong> 165</td>
+                        <td class="total-column">1,241 <br><span style="font-size:12px; font-weight:normal;">(4 Classes)</span></td>
+                    </tr>
+
+                    <tr>
+                        <td class="row-header" style="background-color: #f7fafc; color: #4a5568;">
+                            <span class="korean">출석율</span><br>Participation
+                        </td>
+                        <td>
+                            <ul class="data-list">
+                                <li><strong>Chennai 163:</strong> 123 (52.3%)</li>
+                                <li><strong>Trichy 163:</strong> 88 (51.5%)</li>
+                                <li><strong>Chennai 164:</strong> 409 (61.0%)</li>
+                            </ul>
+                        </td>
+                        <td class="center-align">-</td>
+                        <td class="center-align"><strong>Chennai 162:</strong> 89 (53.9%)</td>
+                        <td class="total-column">709 <br><span style="font-size:12px; font-weight:normal;">(57.1%)</span></td>
+                    </tr>
+
+                    <tr>
+                        <td class="row-header" style="background-color: #f7fafc; color: #4a5568;">
+                            <span class="korean">전도율</span><br>Evangelism
+                        </td>
+                        <td>
+                            <ul class="data-list">
+                                <li><strong>Chennai 163:</strong> 0 (0.0%)</li>
+                                <li><strong>Trichy 163:</strong> 10 (5.8%)</li>
+                                <li><strong>Chennai 164:</strong> 0 (0.0%)</li>
+                            </ul>
+                        </td>
+                        <td class="center-align">-</td>
+                        <td class="center-align"><strong>Chennai 162:</strong> 12 (7.3%)</td>
+                        <td class="total-column">22 <br><span style="font-size:12px; font-weight:normal;">(1.8%)</span></td>
+                    </tr>
+
+                    <tr>
+                        <td class="row-header" style="background-color: #f7fafc; color: #4a5568;">
+                            <span class="korean">헌금율</span><br>Offering
+                        </td>
+                        <td>
+                            <ul class="data-list">
+                                <li><strong>Chennai 163:</strong> 0 (0.0%)</li>
+                                <li><strong>Trichy 163:</strong> 0 (0.0%)</li>
+                                <li><strong>Chennai 164:</strong> 0 (0.0%)</li>
+                            </ul>
+                        </td>
+                        <td class="center-align">-</td>
+                        <td class="center-align"><strong>Chennai 162:</strong> 0 (0.0%)</td>
+                        <td class="total-column">0 <br><span style="font-size:12px; font-weight:normal;">(0.0%)</span></td>
+                    </tr>
+
+                    <tr>
+                        <td colspan="2" class="row-header">
+                            <span class="korean">교인개강반</span> CM Class
+                        </td>
+                        <td class="center-align">-</td>
+                        <td class="center-align">-</td>
+                        <td class="center-align">41 (1 Class)</td>
+                        <td class="total-column">41 <br><span style="font-size:12px; font-weight:normal;">(1 Class)</span></td>
+                    </tr>
+
+                    <tr class="footer-row">
+                        <td colspan="2"><span class="korean">계</span> Total</td>
+                        <td>0 (0 Classes)</td>
+                        <td>0 (0 Classes)</td>
+                        <td>0 (0 Classes)</td>
+                        <td>0 (0 Classes)</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
